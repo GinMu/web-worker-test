@@ -24,23 +24,30 @@ const getBalance = async (address) => {
 };
 
 class PeriodTask extends Event {
-  constructor(ms) {
+
+  taskId;
+  ms;
+  fn;
+  task;
+  constructor(fn, ms) {
     super();
     this.ms = ms;
+    this.fn = fn;
     this.task = null;
+    this.taskId = `taskId-${new Date().getTime()}`;
   }
 
-  async fetchBalance(address) {
-    const data = await getBalance(address);
-    this.emit("fetchBalance", data);
+  async startTask(...args) {
+    const data = await this.fn(...args);
+    this.emit(this.taskId, data);
     this.task = setTimeout(() => {
-      this.fetchBalance(address);
+      this.startTask(...args);
     }, this.ms);
   }
 
-  start(address) {
+  start(...args) {
     this.stop();
-    this.fetchBalance(address);
+    this.startTask(...args);
     return this;
   }
 
@@ -53,19 +60,22 @@ class PeriodTask extends Event {
 }
 
 
-const periodTask = new PeriodTask(30000);
+const periodTask = new PeriodTask(getBalance, 30000);
 
+const sendMessage = (data) => {
+  postMessage(data);
+}
 
 onmessage = function(e) {
   const data = e.data;
   if (data && data.method === "fetchBalance") {
     console.log("start fetch");
-    periodTask.start(data.address)
-      .on("fetchBalance", (data) => {
-        this.postMessage(data);
-      })
+    periodTask
+      .start(data.address)
+      .on(periodTask.taskId, sendMessage);
   } else if (data && data.method === "stopFetch") {
     console.log("stop fetch");
     periodTask.stop();
+    periodTask.removeListener(periodTask.taskId, sendMessage);
   }
 }
