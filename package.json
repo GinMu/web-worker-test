@@ -8,6 +8,8 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@swtc/wallet": "^1.1.0",
+    "bn.js": "^5.2.0",
     "core-js": "^3.6.5",
     "jcc_rpc": "^0.3.2",
     "vue": "^3.0.0"

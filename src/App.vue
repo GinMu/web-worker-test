@@ -5,7 +5,18 @@
 <script>
 
 export default {
-  name: 'App'
+  name: 'App',
+  created () {
+    try {
+      const wallet = require("@swtc/wallet").Factory({guomi: true})
+      console.log(wallet.generate())
+
+      console.log(wallet.isValidSecret("snWmmCRCnAckD9D5sJApvBnpPskh3"))
+      console.log(wallet.isValidAddress("jwsn4igtyMik5Me78tJ67LXkPAgd5eifxU"))
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 </script>
 
