@@ -23,6 +23,16 @@ const getBalance = async (address) => {
   return balances;
 };
 
+
+const generateId = (() => {
+  let id = -1;
+
+  return () => {
+    id++;
+    return id;
+  }
+})();
+
 class PeriodTask extends Event {
 
   taskId;
@@ -34,7 +44,7 @@ class PeriodTask extends Event {
     this.ms = ms;
     this.fn = fn;
     this.task = null;
-    this.taskId = `taskId-${new Date().getTime()}`;
+    this.taskId = `taskId-${generateId()}`;
   }
 
   async startTask(...args) {
@@ -76,6 +86,6 @@ onmessage = function(e) {
   } else if (data && data.method === "stopFetch") {
     console.log("stop fetch");
     periodTask.stop();
-    periodTask.removeListener(periodTask.taskId, sendMessage);
+    periodTask.off(periodTask.taskId, sendMessage);
   }
 }
