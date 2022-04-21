@@ -8,6 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@jccdex/ethereum-contract": "^0.0.4",
     "@swtc/wallet": "^1.1.0",
     "bn.js": "^5.2.0",
     "core-js": "^3.6.5",
