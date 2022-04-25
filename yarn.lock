@@ -1228,10 +1228,10 @@
     cssnano-preset-default "^4.0.0"
     postcss "^7.0.0"
 
-"@jccdex/ethereum-contract@^0.0.4":
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/@jccdex/ethereum-contract/-/ethereum-contract-0.0.4.tgz#a8a10afaa9e6aa6c607ee41e86c21e3d210fb2c4"
-  integrity sha512-X1TroEP38AOw5mm39xvO/0jKmSKJ7HlDkoy4B1OWhFTI5X9A5sslNkJ+9L4wuWPcy+6hGdWRgjwjffX00pPRJQ==
+"@jccdex/ethereum-contract@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@jccdex/ethereum-contract/-/ethereum-contract-0.0.5.tgz#1a23647e01a8551e5bab951cb7b6954e73592400"
+  integrity sha512-hfeB7fJxDlXVo3RUX6jPAD4GRBVuHN+wGVUr4DD2SiGmv2glU0b946o0lyor+QbijdF9XmDDH1uEyrRba7DUIg==
   dependencies:
     "@ethersproject/experimental" "^5.3.0"
     "@uniswap/v2-core" "^1.0.1"
