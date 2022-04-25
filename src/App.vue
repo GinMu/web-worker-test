@@ -21,7 +21,7 @@ export default {
         chainId: 3,
         web3: window.web3,
         nftDaoContract,
-        multicallAddress: "0x53c43764255c17bd724f74c4ef150724ac50a3ed"
+        multicallAddress: "0x5ba1e12693dc8f9c48aad8770482f4739beed696"
       };
       const nftDao = new NFTDao(options);
       console.log(nftDao)
